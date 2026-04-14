@@ -28,7 +28,7 @@ await connectDB()
 // cors is cross origin resource sharing it allows the frontend talk with backend safely
 app.use(cors({
     // It means only these url's are allowed tp make request
-    origin:['http://localhost:5173','http://localhost:3000'],
+    origin:['http://localhost:5173','http://localhost:3000','https://gen-thumb-ai.vercel.app'],
     // It allows cookies/sessions
     credentials:true
 }))

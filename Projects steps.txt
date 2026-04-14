@@ -344,3 +344,11 @@ ______________HOSTING ON VERCEL _____________
 3. copy and make the new fie vercel.json in both server and client and paste the file
 4. make the file .gitignore outside the client and server and type node_modules, env so we ignore these files while puting the
 project inside the github
+5. Upload the project on github by click on source controle on github and do publish branch and upload the project
+7. open the vercel and go to the new project and select the lastest proejct on the git hub as thum gen AI
+then make server live so select the root directory as server and select all the thing of the env file inside the server
+and start deploy, once the server is live
+8. start the deployment of the frontend same as backend but choose the all the environemnt variables of the client folder
+in .env file and paste the vite url link of the live server hosted link and remove the slash from the left
+9.then click on the start deployment
+10. Once the deployment is ready then we start the deployment
