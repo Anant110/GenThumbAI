@@ -41,7 +41,13 @@ app.use(session({
     resave:false,
     // it means don't create session until something is stored
     saveUninitialized:false,
-    cookie:{maxAge:1000*60*60*24*7}, // expire in 7 days
+    cookie:{
+        maxAge:1000*60*60*24*7,
+        httpOnly:true,
+        secure:process.env.NODE_ENV==='production',
+        sameSite:'none',
+        path:'/'
+    }, // expire in 7 days
     //store the sessions inside the mongoDB
     store:MongoStore.create({
         // It means which database should i store the sessions data
