@@ -33,6 +33,7 @@ app.use(cors({
     credentials:true
 }))
 
+app.set('trust proxy',1)
 // middleware for sessions
 // It means enable session and remembers users using cookies
 app.use(session({
@@ -45,7 +46,7 @@ app.use(session({
         maxAge:1000*60*60*24*7,
         httpOnly:true,
         secure:process.env.NODE_ENV==='production',
-        sameSite:'none',
+        sameSite:process.env.NODE_ENV==='production'?'none':'lax',
         path:'/'
     }, // expire in 7 days
     //store the sessions inside the mongoDB
