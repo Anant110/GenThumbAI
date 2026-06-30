@@ -99,7 +99,6 @@ app.use(session({
         // store all sessions data inside the collections
         collectionName:'sessions'
     })
-
 }))
 
 // al the request should be passed using the json method
@@ -134,6 +133,8 @@ app.post('/create-checkout-session',CheckoutStripe)
 // retrive the product information
 app.post('/order/confirm',productStripe)
 
-server.listen(port,()=>{
-    console.log(`Server is running at http://localhost:${port}`)
-})
+// server.listen(port,()=>{
+//     console.log(`Server is running at http://localhost:${port}`)
+// })
+
+export default server

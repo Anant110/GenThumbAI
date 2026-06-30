@@ -352,3 +352,9 @@ and start deploy, once the server is live
 in .env file and paste the vite url link of the live server hosted link and remove the slash from the left
 9.then click on the start deployment
 10. Once the deployment is ready then we start the deployment
+
+
+
+TASK KILL COMMANDS
+1. netstat -ano | findstr :3000 
+2. taskkill /PID 28924 /F
