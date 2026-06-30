@@ -5,4 +5,6 @@ export const navlinks: INavLink[] = [
     { name: "Features", href: "#features" },
     { name: "Testimonials", href: "#testimonials" },
     { name: "Pricing", href: "#pricing" },
+    { name: "AI Help", href: "#help" },
+
 ];

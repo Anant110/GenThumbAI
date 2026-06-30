@@ -8,6 +8,7 @@ import { ArrowUpRightIcon, DownloadIcon, TrashIcon } from "lucide-react";
 import { useAuth } from "../context/context";
 import api from "../configs/api";
 import toast from "react-hot-toast";
+import {socket} from "./../configs/socket"
 
 const MyGeneration = () => {
   // fetch isLoggedIn varaible from the contex file
@@ -38,8 +39,10 @@ const MyGeneration = () => {
     // new code
     try {
       // fetch all the thumnails data
+      console.log(api.defaults.baseURL);
       const {data}=await api.get('/api/user/thumbnails')
       // store the data
+      console.log(data);
       setThumbnails(data.thumbnails || [])
     } catch (error:any) {
       console.log(error)
@@ -83,7 +86,7 @@ const MyGeneration = () => {
       setThumbnails(thumbnails.filter((t)=>t._id!==id))
       
     } catch (error) {
-      
+      console.log(error)
     }
   };
 
@@ -99,11 +102,17 @@ useEffect(() => {
   if (isLoggedIn) {
     fetchThumbnails();
 
-    const interval = setInterval(() => {
-      fetchThumbnails();
-    }, 5000); // every 5 sec
+    // const interval = setInterval(() => {
+    //   fetchThumbnails();
+    // }, 5000); // every 5 sec
+    socket.on("thumbnail-completed",()=>{
+      fetchThumbnails()
+    })
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
+    return () => {
+      socket.off("thumbnail-completed")
+    }
   }
 }, [isLoggedIn]);
 
@@ -206,13 +215,13 @@ useEffect(() => {
                   <div onClick={(e)=>e.stopPropagation()} className="absolute bottom-2 right-2 max-sm:flex sm:hidden group-hover:flex">
                     {/* this is used for delete */}
                     <TrashIcon 
-                    onClick={()=>handleDelete(thumb._id)} className="size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all"/>
+                    onClick={()=>handleDelete(thumb._id)} className="size-6 bg-black/50 p-1 rounded hover:bg-blue-600 transition-all"/>
                     {/* This is used for download the icon */}
                     <DownloadIcon 
-                    onClick={()=>handleDownload(thumb.image_url!)} className='size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all'/>
+                    onClick={()=>handleDownload(thumb.image_url!)} className='size-6 bg-black/50 p-1 rounded hover:bg-blue-600 transition-all'/>
 
                     <Link target="_blank" to={`/preview?thumbnail_url=${thumb.image_url}&title=${thumb.title}` }>
-                    <ArrowUpRightIcon className='size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all'/>
+                    <ArrowUpRightIcon className='size-6 bg-black/50 p-1 rounded hover:bg-blue-600 transition-all'/>
                       </Link>
 
                     </div>

@@ -110,12 +110,17 @@ export const AuthProvider=({children}:{children:React.ReactNode})=>{
     const fetchUser=async()=>{
         try {
             const {data}=await api.get('/api/auth/verify')
+            console.log(data)
             if (data.user){
                 setUser(data.user as IUser)
                 setisLoggedIn(true)
            }   
         } catch (error) {
             console.log(error)
+                // console.log("Error:", error);
+                // console.log("Message:", error.message);
+                // console.log("Code:", error.code);
+                // console.log("Response:", error.response?.data);
         }
     }
 
@@ -129,10 +134,10 @@ export const AuthProvider=({children}:{children:React.ReactNode})=>{
     },[])
 
 
-
     const value={
         user, setUser, isLoggedIn, setisLoggedIn,signup,login,logout
     }
+    
     return(
         // provider wrapping up the component
         <AuthContext.Provider value={value}>

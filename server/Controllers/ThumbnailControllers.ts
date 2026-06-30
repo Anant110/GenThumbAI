@@ -6,6 +6,7 @@ import ai from "../configs/ai.js";
 import path from "node:path";
 import  fs from "fs";
 import {v2 as cloudinary} from 'cloudinary'
+import {io} from '../server.js'
 
 const stylePrompts = {
   'Bold & Graphic': 
@@ -167,6 +168,14 @@ export const generateThumnail = async (req: Request, res: Response) => {
     // save the data inside the mongoDB
     await thumbnail.save()
 
+    io.to(thumbnail._id.toString()).emit(
+      "thumbnail-completed",
+      {
+        id:thumbnail._id,
+        imageUrl:uploadResult.url
+      }
+    )
+
     // provide the response
     res.json({
       message:"Thumbnail Generated",
@@ -182,6 +191,7 @@ export const generateThumnail = async (req: Request, res: Response) => {
     res.status(500).json({ message: error instanceof Error ? error.message : 'An unknown error occurred' });
   }
 };
+
 
 // To delete the thumnail inside the database
 export const deleteThumbnail=async(req:Request,res:Response)=>{

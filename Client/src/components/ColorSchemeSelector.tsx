@@ -20,7 +20,7 @@ const ColorSchemeSelector = ({
           <button key={scheme.id}
           onClick={()=>onChange(scheme.id)}
           // highlighted the current value is selected if value equals to current scheme id
-          className={`relative rounded-lg transition-all ${value===scheme.id && 'ring-2 ring-pink-500'}`}
+          className={`relative rounded-lg transition-all ${value===scheme.id && 'ring-2 ring-blue-500'}`}
           title={scheme.name}>
             <div className='flex h-10 rounded-lg overflow-hidden'>
               {/* we will iterate inside the color array of each scheme value and dispalay in UI for background color */}

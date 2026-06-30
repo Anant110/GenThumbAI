@@ -8,10 +8,8 @@ const Login = () => {
         const [state, setState] = useState("login")
         // fetching the data from the authcontext for user,login and signup
         const {user,login,signup}=useAuth()
-
         // making the naivigate functionality
         const navigate=useNavigate()
-
 
     const [formData, setFormData] = useState({
         name: '',
@@ -90,8 +88,6 @@ const Login = () => {
                 </p>
             </form>
           </div>
-
-
         </>
   )
 }

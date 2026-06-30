@@ -10,6 +10,7 @@ import PreviewPanel from "../components/PreviewPanel";
 import { useAuth } from "../context/context";
 import toast from "react-hot-toast";
 import api from "../configs/api";
+import { socket } from './../configs/socket';
 
 
 const Generate = () => {
@@ -129,7 +130,30 @@ const Generate = () => {
     // }
   }
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   // old code
+  //   // if(id){
+  //   //   fetchThumbnail()
+  //   // }
+
+  //   if(isLoggedIn && id){
+  //     fetchThumbnail()
+  //   }
+
+  //   // when image is to be loading
+  //   if(id && loading && isLoggedIn){
+  //     const interval=setInterval(()=>{
+  //       // fetching thumbnail every 5 seconds, trying to be executed every after 5 seconds
+  //       fetchThumbnail()
+  //     },5000);
+
+  //     // before starting another loop ensures that old one should be deleted
+  //     return ()=>clearInterval(interval)
+  //   }
+  //   // this function works any of the these three things changes id or loading or isLoggedIn
+  // },[id,loading,isLoggedIn])
+
+   useEffect(()=>{
     // old code
     // if(id){
     //   fetchThumbnail()
@@ -139,18 +163,26 @@ const Generate = () => {
       fetchThumbnail()
     }
 
-    // when image is to be loading
-    if(id && loading && isLoggedIn){
-      const interval=setInterval(()=>{
-        // fetching thumbnail every 5 seconds, trying to be executed every after 5 seconds
-        fetchThumbnail()
-      },5000);
+    // // when image is to be loading
+    // if(id && loading && isLoggedIn){
+    //   const interval=setInterval(()=>{
+    //     // fetching thumbnail every 5 seconds, trying to be executed every after 5 seconds
+    //     fetchThumbnail()
+    //   },5000);
+    socket.emit("join-thumbnail",id)
+
+    // listen for completion
+    socket.on("thumbnail-completed",()=>{
+      fetchThumbnail()
+    })
 
       // before starting another loop ensures that old one should be deleted
-      return ()=>clearInterval(interval)
-    }
+      return ()=>{
+        socket.off("thumnail-completed")
+      }
+    },[id,loading,isLoggedIn])
     // this function works any of the these three things changes id or loading or isLoggedIn
-  },[id,loading,isLoggedIn])
+  
 
   // this effect works when every time pathname is changing
   useEffect(()=>{
@@ -190,7 +222,7 @@ const Generate = () => {
                       onChange={(e) => setTitle(e.target.value)}
                       maxLength={100}
                       placeholder="eg., 10 Tips for Better Sleep"
-                      className="w-full px-4 py-3 rounded-lg border border-white/12 text-zinc-100 placeholder:text-zinc-400 focus: outline-none focus:ring-2 focus:ring-pink-500"
+                      className="w-full px-4 py-3 rounded-lg border border-white/12 text-zinc-100 placeholder:text-zinc-400 focus: outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <div className="flex justify-end">
                       {/* length changing when we type the characters */}
@@ -226,7 +258,7 @@ const Generate = () => {
                     onChange={(e) => setAdditionalDetails(e.target.value)}
                     rows={3}
                     placeholder="Add any specific elements, mood, or style preferences. .. "
-                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/6 text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/6 text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                   />
                 </div>
 
@@ -236,7 +268,7 @@ const Generate = () => {
                 {!id && (
                   // attach the onclick property when id is not there means button is not there so no user clicks 
                   // user clicks button when id is not there
-                  <button onClick={handleGenerate} className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-linear-to-b from-pink-500 to-pink-600 hover:from-pink-700 disabled: cursor-not-allowed transition-colors">
+                  <button onClick={handleGenerate} className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-linear-to-b from-blue-500 to-blue-600 hover:from-blue-700 disabled: cursor-not-allowed transition-colors">
                     {loading ? "Generating..." : "Generate Thumbnail"}
                   </button>
                 )}

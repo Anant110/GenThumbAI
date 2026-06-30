@@ -8,9 +8,16 @@ import Generate from "./pages/Generate";
 import MyGeneration from "./pages/MyGeneration";
 import YtPreview from "./pages/YtPreview";
 import Login from "./components/Login";
-import { useEffect } from "react";
 import {Toaster} from 'react-hot-toast'
-
+import AiHelp from "./pages/AiHelp";
+import MyContact from "./pages/MyContact";
+import About from "./pages/About";
+import {useEffect } from "react";
+import Compare from "./pages/Compare";
+import Service from "./pages/Service";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
+ 
 export default function App() {
 
     const {pathname}=useLocation()
@@ -34,6 +41,13 @@ export default function App() {
                 <Route path="/my-generation" element={<MyGeneration />} />
                 <Route path="/preview" element={<YtPreview />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/help" element={<AiHelp />} />
+                <Route path="/contact" element={<MyContact/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/compare" element={<Compare/>}/>
+                <Route path="/service" element={<Service/>}/>
+                <Route path="/success" element={<Success/>}/>
+                <Route path="/cancel" element={<Cancel/>}/>
             </Routes>
             <Footer />
         </>

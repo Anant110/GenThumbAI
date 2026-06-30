@@ -10,7 +10,7 @@ body {
 }
 
 body::selection {
-    @apply bg-pink-600 text-white;
+    @apply bg-blue-600 text-white;
 }
 
 button {
@@ -18,7 +18,7 @@ button {
 }
 
 .move-gradient {
-    background-image: linear-gradient(to right, var(--color-pink-500), var(--color-pink-300));
+    background-image: linear-gradient(to right, var(--color-blue-500), var(--color-blue-300));
     background-size: 200% 100%;
     animation: movegradient 5s infinite;
 }
@@ -33,4 +33,11 @@ button {
     100% {
         background-position: 0% 50%;
     }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

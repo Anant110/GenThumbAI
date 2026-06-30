@@ -55,6 +55,12 @@ export interface IUser {
     password?: string;
     createdAt?: Date;
     updatedAt?: Date;
+    isSubscribed?:boolean;
+    product?:{
+        name:string,
+        price:number
+        purchaseDate:Date
+    }
 }
 
 export const dummyThumbnails = [
