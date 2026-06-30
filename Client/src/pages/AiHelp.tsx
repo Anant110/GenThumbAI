@@ -126,7 +126,7 @@ const AiHelp = () => {
     setMessage("");
 
     try {
-      const response=await fetch('http://localhost:3000/chat',{
+      const response=await fetch('https://gen-thumb-serverupdated.vercel.app/chat',{
       method:"POST",
       headers:{
         "Content-Type": "application/json",
