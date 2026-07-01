@@ -1,6 +1,6 @@
 import {io} from 'socket.io-client'
 export const socket=io(
-    "http://localhost:3000",
+    "https://gen-thumb-serverupdated.vercel.app",
     {
         withCredentials:true
     }
