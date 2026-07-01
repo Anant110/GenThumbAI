@@ -64,7 +64,7 @@ export const AuthProvider=({children}:{children:React.ReactNode})=>{
     const signup=async({name,email,password}:{name:string,email:string,password:string})=>{
         try {
             const {data}=await api.post('/api/auth/register',{name,email,password})
-            console.log(data)
+            // console.log(data)
             if(data.user){
                 // stores the fetching data inside the curent state in place of null
                 setUser(data.user as IUser)
@@ -81,7 +81,7 @@ export const AuthProvider=({children}:{children:React.ReactNode})=>{
     const login=async({email,password}:{email:string,password:string})=>{
         try {
             const {data}=await api.post('/api/auth/login',{email,password})
-            console.log(data)
+            // console.log(data)
             if(data.user){
                 // stores the fetching data inside the curent state in place of null
                 setUser(data.user as IUser)
@@ -110,17 +110,13 @@ export const AuthProvider=({children}:{children:React.ReactNode})=>{
     const fetchUser=async()=>{
         try {
             const {data}=await api.get('/api/auth/verify')
-            console.log(data)
+            // console.log(data)
             if (data.user){
                 setUser(data.user as IUser)
                 setisLoggedIn(true)
            }   
         } catch (error) {
             console.log(error)
-                // console.log("Error:", error);
-                // console.log("Message:", error.message);
-                // console.log("Code:", error.code);
-                // console.log("Response:", error.response?.data);
         }
     }
 

@@ -42,10 +42,11 @@ export default function Navbar() {
           {/* when the user is loggedin then only show the My Generations other wise shwing the about */}
           {isLoggedIn ? (
             <Link
-              to={user?.product?.name=="Pro Plan AI Thumbnail App"?"/my-generation":"#"}
+              to={(user?.product?.name=="Pro Plan AI Thumbnail App" || user?.product?.name=="Enterprise Plan AI Thumbnail App")?"/my-generation":"#"}
               onClick={(e)=>{
-                if(user?.product?.name!=="Pro Plan AI Thumbnail App"){
+                if(user?.product?.name==="Basic Plan AI Thumbnail App"){
                   e.preventDefault()
+                  // console.log("Hello")
                   toast.error("Subscribed to Pro Plan")
                 }
               }}

@@ -51,6 +51,7 @@ export const io=new Server(server,{
             "http://localhost:5173",
             "http://localhost:3000",
             "https://gen-thumb-ai.vercel.app",
+            "https://gen-thumb-ai-client.vercel.app"
         ],
         credentials:true
     }

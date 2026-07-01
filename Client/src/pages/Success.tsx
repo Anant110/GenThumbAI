@@ -16,7 +16,7 @@ const Success = () => {
     const urlParams = new URLSearchParams(window.location.search)
     const id = urlParams.get("session_id")
     setSessionId(id)
-    console.log(id)
+    // console.log(id)
   },[])
 
 
@@ -34,7 +34,7 @@ const Success = () => {
           price:item.price
         })
 
-        console.log(item)
+        // console.log(item)
       } catch (error) {
         console.error(error);
       }

@@ -39,10 +39,10 @@ const MyGeneration = () => {
     // new code
     try {
       // fetch all the thumnails data
-      console.log(api.defaults.baseURL);
+      // console.log(api.defaults.baseURL);
       const {data}=await api.get('/api/user/thumbnails')
       // store the data
-      console.log(data);
+      // console.log(data);
       setThumbnails(data.thumbnails || [])
     } catch (error:any) {
       console.log(error)

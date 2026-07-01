@@ -25,17 +25,17 @@ const [preview2, setPreview2] = useState<string>("");
     const formData = new FormData();
     formData.append("images", thumb1);
     formData.append("images", thumb2);
-    console.log(formData);
+    // console.log(formData);
     // console.log(formData.get("thumbnail1"));
     // console.log(formData.get("thumbnail2"));
-    console.log(typeof(thumb1));
-    console.log(typeof(thumb2));
+    // console.log(typeof(thumb1));
+    // console.log(typeof(thumb2));
       const { data } = await api.post("/compare-thumbnail", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(data);
+      // console.log(data);
       setresult(data)
     } catch (error) {
       console.log(error);

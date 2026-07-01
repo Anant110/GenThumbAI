@@ -30,15 +30,15 @@ const AiHelp = () => {
 
     setImage(file);
     setPreview(URL.createObjectURL(file));
-    console.log(file);
-    console.log(file["name"]);
+    // console.log(file);
+    // console.log(file["name"]);
   };
 
   const handleAnalyze = async () => {
     if (!image) return;
 
     setLoading(true);
-    console.log(image);
+    // console.log(image);
 
     try {
       const ai = new GoogleGenAI({
@@ -93,7 +93,7 @@ const AiHelp = () => {
 
           const analysis = JSON.parse(cleaned);
 
-          console.log(analysis);
+          // console.log(analysis);
           setResponse(analysis);
         } catch (error) {
           console.log(error);
